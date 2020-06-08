@@ -2,6 +2,7 @@ const express = require('express')
 const bodyParser = require("body-parser")
 const jwt = require("jsonwebtoken")
 const bcrypt = require("bcryptjs")
+const cors = require("cors")
 const { Sequelize } = require('sequelize')
 
 const app = express()
@@ -9,6 +10,7 @@ const app = express()
 const port = 3000
 const factorial = n => !(n > 1) ? 1 : factorial(n - 1) * n;
 
+app.use(cors())
 app.use(bodyParser.json())
 
 const sequelize = new Sequelize(process.env.DB_URI)
