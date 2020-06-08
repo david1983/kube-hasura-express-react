@@ -1,0 +1,69 @@
+{
+  "version": 2,
+  "tables": [
+    {
+      "table": {
+        "schema": "public",
+        "name": "users"
+      },
+      "insert_permissions": [
+        {
+          "role": "user",
+          "permission": {
+            "check": {},
+            "columns": [
+              "age",
+              "id",
+              "email",
+              "name",
+              "password",
+              "surname"
+            ],
+            "backend_only": false
+          }
+        }
+      ],
+      "select_permissions": [
+        {
+          "role": "user",
+          "permission": {
+            "columns": [
+              "id",
+              "email",
+              "password",
+              "name",
+              "surname",
+              "age"
+            ],
+            "filter": {}
+          }
+        }
+      ],
+      "update_permissions": [
+        {
+          "role": "user",
+          "permission": {
+            "columns": [
+              "age",
+              "id",
+              "email",
+              "name",
+              "password",
+              "surname"
+            ],
+            "filter": {},
+            "check": {}
+          }
+        }
+      ],
+      "delete_permissions": [
+        {
+          "role": "user",
+          "permission": {
+            "filter": {}
+          }
+        }
+      ]
+    }
+  ]
+}
