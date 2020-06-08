@@ -23,5 +23,10 @@ pipeline {
                 }
             }
         }
+        stage("Deploy"){
+            steps {
+                sh "microk9s.kubectl apply -f deployment"
+            }
+        }
     }
 }
