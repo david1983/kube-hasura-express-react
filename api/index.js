@@ -14,10 +14,10 @@ app.use(bodyParser.json())
 const sequelize = new Sequelize(process.env.DB_URI)
 sequelize.authenticate().then(() => console.log("sequelize connected"))
 
-app.get('/', (req, res) => res.json({ message: 'Hello world' }))
-app.get('/factorial/:n', (req, res) => res.json({ factorial: factorial(req.params.n) }))
+app.get('/api/', (req, res) => res.json({ message: 'Hello world' }))
+app.get('/api/factorial/:n', (req, res) => res.json({ factorial: factorial(req.params.n) }))
 
-app.post("/signin", async (req, res) => {
+app.post("/api/signin", async (req, res) => {
     if (!req.body.email) return res.status(500).json({ error: "email not provided" })
     if (!req.body.pass) return res.status(500).json({ error: "password cannot be null" })
     const pass = bcrypt.hashSync(req.body.pass, 8)
@@ -31,7 +31,7 @@ app.post("/signin", async (req, res) => {
 
 })
 
-app.post("/login", async (req, res) => {
+app.post("/api/login", async (req, res) => {
     if (!req.body.email) return res.status(500).json({ error: "email not provided" })
     if (!req.body.pass) return res.status(500).json({ error: "password cannot be null" })
     const pass = req.body.pass

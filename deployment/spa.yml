@@ -3,45 +3,45 @@ apiVersion: v1
 kind: Service
 metadata:
   labels:
-    app: api
-  name: api
+    app: spa
+  name: spa
   namespace: default
 spec:
   ports:
   - protocol: TCP
     port: 80
-    targetPort: 3000
+    targetPort: 80
   selector:
-    app: api
+    app: spa
   type: NodePort
 ---  
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: api
-  name: api
+    app: spa
+  name: spa
   namespace: default
 spec:
   selector:
     matchLabels:
-      app: api
+      app: spa
   template:
     metadata:
       labels:
-        app: api
+        app: spa
     spec:
       containers:
-      - image: localhost:5000/api
+      - image: localhost:5000/spa
         imagePullPolicy: Always
-        name: api
+        name: spa
         env:
         - name: DB_URI
           value: postgres://admin:admin@postgres:5432/postgres
         - name: JWT_SECRET
           value: 3EK6FD+o0+c7tzBNVfjpMkNDi2yARAAKzQlk8O2IKoxQu4nF7EdAh8s3TwpHwrdWT6R
         ports:
-        - containerPort: 3000
+        - containerPort: 80
           protocol: TCP
         resources:
           limits:
@@ -52,12 +52,12 @@ spec:
 apiVersion: autoscaling/v2beta2
 kind: HorizontalPodAutoscaler
 metadata:
-  name: api
+  name: spa
 spec:
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
-    name: api
+    name: spa
   minReplicas: 1
   maxReplicas: 10
   metrics:
