@@ -25,7 +25,7 @@ pipeline {
         }
         stage("Deploy"){
             steps {
-                sh "microk9s.kubectl apply -f deployment"
+                sh "/snap/bin/microk8s.kubectl apply -f deployment"
             }
         }
     }
