@@ -2,9 +2,9 @@ pipeline {
     agent { docker 'node' }  
     stages {
         stage('Api') {
-            when {
-                changeset "api/**"
-            }
+            // when {
+            //     changeset "api/**"
+            // }
             steps {
                 sh "cd api"
                 sh "npm install"
@@ -12,9 +12,9 @@ pipeline {
             }
         }
         stage('React') {
-            when {
-                changeset "spa/**"
-            } 
+            // when {
+            //     changeset "spa/**"
+            // } 
             steps {
                 sh "cd api"
                 sh "npm install"
