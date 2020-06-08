@@ -6,9 +6,10 @@ pipeline {
             //     changeset "api/**"
             // }
             steps {
-                sh "cd api"
-                sh "npm install"
-                sh "./build.sh"
+                dir("api"){
+                    sh "npm install"
+                    sh "./build.sh"
+                }
             }
         }
         stage('React') {
@@ -16,9 +17,10 @@ pipeline {
             //     changeset "spa/**"
             // } 
             steps {
-                sh "cd api"
-                sh "npm install"
-                sh "./build.sh"
+                dir("spa"){
+                    sh "npm install"
+                    sh "./build.sh"
+                }
             }
         }
     }
