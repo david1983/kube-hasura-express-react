@@ -1,8 +1,9 @@
 pipeline {
     agent none
     stages {
-        agent { docker 'node' }  
         stage('Api') {
+            agent { docker 'node' }  
+        
             // when {
             //     changeset "api/**"
             // }
