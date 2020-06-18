@@ -10,7 +10,11 @@ pipeline {
             steps {
                 dir("api"){
                     sh "npm install"
-                    sh "./build.sh"
+                     container('docker') {
+                          sh """
+                             ./build.sh
+                          """
+                        }
                 }
             }
         }
