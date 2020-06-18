@@ -8,13 +8,10 @@ pipeline {
             //     changeset "api/**"
             // }
             steps {
-                dir("api"){
-                    sh "npm install"
-                     container('docker') {
-                          sh """
-                             ./build.sh
-                          """
-                        }
+                container('docker') {
+                      sh """
+                         cd api && npm install && ./build.sh
+                      """
                 }
             }
         }
