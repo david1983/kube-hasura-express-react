@@ -3,17 +3,11 @@ pipeline {
     stages {
         stage('Api') {
             agent { docker 'node' }  
-        
-            // when {
-            //     changeset "api/**"
-            // }
             steps {
-                container('docker') {
-                      sh """
-                         cd api && npm install && ./build.sh
-                      """
+                dir("api"){
+                    sh "npm install"
+                    sh "./build.sh"
                 }
-            }
         }
         stage('React') {
             agent { docker 'node' }  
