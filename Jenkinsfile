@@ -28,7 +28,8 @@ spec:
       container('docker') {
         sh "ls -la"
         dir("api"){
-          sh "ls -la"
+          sh "docker build -t localhost:5000/api ."
+          sh "docker push localhost:5000/api"
         }
       }
     }
