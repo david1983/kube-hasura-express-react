@@ -24,16 +24,12 @@ spec:
   node(label) {
     stage('Build API') {
       container('docker') {
-        dir("api"){
-          sh "./build.sh"
-        }
+        sh "cd api && ./build.sh"        
       }
     }
     stage('Build SPA') {
       container('docker') {
-        dir("spa"){
-          sh "./build.sh"
-        }
+        sh "cd spa && ./build.sh"
     }
   }
 }
