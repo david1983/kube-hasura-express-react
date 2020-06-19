@@ -28,7 +28,7 @@ spec:
       container('docker') {
         sh "ls -la"
         sh "cd api && ls -la"
-        sh "cd api && ./build.sh"
+        sh "cd api && build.sh"
       }
     }
   }
