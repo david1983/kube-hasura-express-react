@@ -22,8 +22,8 @@ spec:
       path: /var/run/docker.sock
 """
   ) {
- node(label) {
-    stage('Build Docker image') {
+  node("${label}-1") {
+    stage('Build API ') {
       git 'https://github.com/david1983/kube-hasura-express-react.git'
       container('docker') {
         sh "ls -la"
@@ -34,4 +34,17 @@ spec:
       }
     }
   }
+   node(${label}-2) {
+    stage('Build SPA ') {
+      git 'https://github.com/david1983/kube-hasura-express-react.git'
+      container('docker') {
+        sh "ls -la"
+        dir("spa"){
+          sh "docker build -t localhost:5000/api ."
+          sh "docker push localhost:5000/api"
+        }
+      }
+    }
+  }
+
 }
