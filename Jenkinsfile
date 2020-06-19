@@ -22,7 +22,7 @@ spec:
       path: /var/run/docker.sock
 """
   ) {
-  node("${label}-1") {
+  node(label) {
     stage('Build API ') {
       git 'https://github.com/david1983/kube-hasura-express-react.git'
       container('docker') {
@@ -33,8 +33,6 @@ spec:
         }
       }
     }
-  }
-   node(${label}-2) {
     stage('Build SPA ') {
       git 'https://github.com/david1983/kube-hasura-express-react.git'
       container('docker') {
