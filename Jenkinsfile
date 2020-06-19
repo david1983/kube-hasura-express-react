@@ -26,8 +26,7 @@ spec:
     stage('Build Docker image') {
       git 'https://github.com/david1983/kube-hasura-express-react.git'
       container('docker') {
-        sh "ls -la"
-        sh "cd kube-hasura-express-react/api && ./build.sh"
+        sh "cd api && ./build.sh"
       }
     }
   }
