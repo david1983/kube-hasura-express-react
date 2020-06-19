@@ -1,3 +1,6 @@
+/**
+ * This pipeline will run a Docker image build
+ */
 
 def label = "docker-${UUID.randomUUID().toString()}"
 
@@ -19,17 +22,11 @@ spec:
       path: /var/run/docker.sock
 """
   ) {
-
-  def image = "jenkins/jnlp-slave"
-  node(label) {
-    stage('Build API') {
+ node(label) {
+    stage('Build Docker image') {
       container('docker') {
-        sh "cd api && ./build.sh"        
+        sh "cd api && ./build.sh"
       }
-    }
-    stage('Build SPA') {
-      container('docker') {
-        sh "cd spa && ./build.sh"
     }
   }
 }
