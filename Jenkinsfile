@@ -40,8 +40,8 @@ spec:
       container('docker') {
         sh "ls -la"
         dir("spa"){
-          sh "docker build -t localhost:5000/api ."
-          sh "docker push localhost:5000/api"
+          sh "docker build -t localhost:5000/spa ."
+          sh "docker push localhost:5000/spa"
         }
       }
     }
