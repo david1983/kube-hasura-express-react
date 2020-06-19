@@ -27,8 +27,9 @@ spec:
       git 'https://github.com/david1983/kube-hasura-express-react.git'
       container('docker') {
         sh "ls -la"
-        sh "cd api && ls -la"
-        sh "cd api && ls -la"
+        dir("api"){
+          sh "ls -la"
+        }
       }
     }
   }
